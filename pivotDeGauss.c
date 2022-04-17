@@ -245,7 +245,7 @@ void pivotDeGauss(dmatrix* matrix)
         substractEq(matrix, 1, 2);
     }
 
-    // In the end you get an equation which looks like 0x + 0y + az = b, I had to calculate x and y but haven't wrote this part.
+    // In the end you get an equation which looks like 0x + 0y + az = b, I had to calculate x and y but I didn't wrote this part yet.
     
     
 
