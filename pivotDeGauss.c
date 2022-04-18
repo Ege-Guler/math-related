@@ -51,7 +51,7 @@ int main(void)
     
 
     pivotDeGauss(matrix);
-    printmatrix(matrix);
+
     
     return 0;
 }
@@ -137,10 +137,14 @@ void pivotDeGauss(dmatrix* matrix)
     //for x
 
     //L1 and L2 (eliminates x in 2nd equation)
-    if(matrix[0].mcol[0].mval > 0 && matrix[1].mcol[0].mval < 0 || (matrix[0].mcol[0].mval < 0 && matrix[1].mcol[0].mval > 0)) 
+
+    if(matrix[0].mcol[0].mval < 0)
+    {
+        multiplyEq(matrix, -1, 0);
+    }
+    if(matrix[1].mcol[0].mval < 0)
     {
         multiplyEq(matrix, -1, 1);
-
     }
     if(matrix[0].mcol[0].mval > matrix[1].mcol[0].mval) // checks whether coefficient of x in 1st equation is greater than 2nd equation's
     {
@@ -175,10 +179,13 @@ void pivotDeGauss(dmatrix* matrix)
 
 
     //L1 and L3 (eliminates x in 3rd equation)
-    if(matrix[0].mcol[0].mval > 0 && matrix[2].mcol[0].mval < 0 || (matrix[0].mcol[0].mval < 0 && matrix[2].mcol[0].mval > 0)) 
+    if(matrix[0].mcol[0].mval < 0)
+    {
+        multiplyEq(matrix, -1, 0);
+    }
+    if(matrix[2].mcol[0].mval < 0)
     {
         multiplyEq(matrix, -1, 2);
-
     }
     if(matrix[0].mcol[0].mval > matrix[2].mcol[0].mval) // same thing mentioned above
     {
@@ -209,14 +216,19 @@ void pivotDeGauss(dmatrix* matrix)
     printf("\n----L1 and L3-----\n");
     printmatrix(matrix);
 
-    printf("\n----L2' and L3'-----\n");
+    
 
     //I repeat same process for y
-    if(matrix[1].mcol[1].mval > 0 && matrix[2].mcol[1].mval < 0 || (matrix[1].mcol[1].mval < 0 && matrix[2].mcol[1].mval > 0)) 
+
+    if(matrix[1].mcol[1].mval < 0)
+    {
+        multiplyEq(matrix, -1, 1);
+    }
+    if(matrix[2].mcol[1].mval < 0)
     {
         multiplyEq(matrix, -1, 2);
+    }
 
-    } 
     if(matrix[1].mcol[1].mval > matrix[2].mcol[1].mval)
         {
             lcmVal = lcm(matrix[1].mcol[1].mval, matrix[2].mcol[1].mval);
@@ -227,10 +239,10 @@ void pivotDeGauss(dmatrix* matrix)
                 multiplyEq(matrix, (lcmVal/matrix[1].mcol[1].mval), 1);
 
             }
-        substractEq(matrix, 0, 2);
+        
 
 
-            substractEq(matrix, 1, 2);
+        substractEq(matrix, 1, 2);
         }
     else
     {
@@ -244,8 +256,10 @@ void pivotDeGauss(dmatrix* matrix)
         }
         substractEq(matrix, 1, 2);
     }
+    printf("\n----L2' and L3'-----\n");
+    printmatrix(matrix);
 
-    // In the end you get an equation which looks like 0x + 0y + az = b, I had to calculate x and y but I didn't wrote this part yet.
+    // In the end you get an equation which looks like 0x + 0y + az = b, I had to calculate x and y but haven't wrote this part.
     
     
 
