@@ -3,7 +3,7 @@
 
     This program uses Gaussian elimination method to solve a system of 3 equations.
 
-    Shout out to "https://github.com/oguzalpcakmak" for "dmatrix *makematrix(int cols, int rows);" function
+    Shout-out to "https://github.com/oguzalpcakmak" for "dmatrix *makematrix(int cols, int rows);" function
 
     I haven't yet finished working on this project.
 
