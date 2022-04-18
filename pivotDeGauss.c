@@ -33,21 +33,27 @@ void multiplyEq(dmatrix* eq, int k, int row_num); //multiplies equation with con
 int lcm(int f_num, int s_num); // Calculates largest common factor
 void pivotDeGauss(dmatrix* matrix);//Gaussian elimination method
 int determinant(dmatrix* matrix);//Calculates determinant of 3x3 matrix
+void printMatrixAsSystem(dmatrix* m);// prints matrix as a system of 3 equations
 
 
 int main(void)
 {
     dmatrix* matrix = makematrix(ROW, COL);
     readEquation(matrix);
-    printmatrix(matrix);
+    printf("System of 3 equations: \n");
+    printMatrixAsSystem(matrix);
     int systemDeterminant = determinant(matrix);
     printf("\nDeterminant of this system is: %d\n", systemDeterminant);
+    printf("\n----------------Calculating----------------");
     if(determinant == 0)
     {
         printf("\nThis program is unable to solve systems with infinite or no solution\n");
         exit(EXIT_FAILURE);
     }
     
+    printf("\n");
+    printMatrixAsSystem(matrix);
+    printf("\n");
     
 
     pivotDeGauss(matrix);
@@ -138,6 +144,7 @@ void pivotDeGauss(dmatrix* matrix)
 
     //L1 and L2 (eliminates x in 2nd equation)
 
+    //I only have substract function, so coefficient of x's must be positive.
     if(matrix[0].mcol[0].mval < 0)
     {
         multiplyEq(matrix, -1, 0);
@@ -174,7 +181,7 @@ void pivotDeGauss(dmatrix* matrix)
 
     }
     printf("\n----L1 and L2-----\n");
-    printmatrix(matrix);
+    printMatrixAsSystem(matrix);
     printf("\n");
 
 
@@ -214,7 +221,7 @@ void pivotDeGauss(dmatrix* matrix)
     }
 
     printf("\n----L1 and L3-----\n");
-    printmatrix(matrix);
+    printMatrixAsSystem(matrix);
 
     
 
@@ -257,7 +264,7 @@ void pivotDeGauss(dmatrix* matrix)
         substractEq(matrix, 1, 2);
     }
     printf("\n----L2' and L3'-----\n");
-    printmatrix(matrix);
+    printMatrixAsSystem(matrix);
 
     // In the end you get an equation which looks like 0x + 0y + az = b, I had to calculate x and y but haven't wrote this part.
     
@@ -267,4 +274,13 @@ void pivotDeGauss(dmatrix* matrix)
 int determinant(dmatrix* m)
 {
     return m[0].mcol[0].mval * (m[1].mcol[1].mval * m[2].mcol[2].mval - m[1].mcol[2].mval * m[2].mcol[1].mval) - m[1].mcol[0].mval * (m[0].mcol[1].mval * m[2].mcol[2].mval- m[0].mcol[2].mval * m[2].mcol[1].mval) + m[2].mcol[0].mval * (m[0].mcol[1].mval * m[1].mcol[2].mval - m[1].mcol[1].mval * m[0].mcol[2].mval);
+}
+
+void printMatrixAsSystem(dmatrix* m)
+{
+    for(int i = 0; i < ROW; i++)
+    {
+        printf("%+4dx %+4dy %+4dz = %+4d\n", m[i].mcol[0].mval, m[i].mcol[1].mval, m[i].mcol[2].mval, m[i].mcol[3].mval);
+    }
+    
 }
