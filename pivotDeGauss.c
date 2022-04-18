@@ -271,6 +271,7 @@ void pivotDeGauss(dmatrix* matrix)
     
 
 }
+//Hard coded why not?
 int determinant(dmatrix* m)
 {
     return m[0].mcol[0].mval * (m[1].mcol[1].mval * m[2].mcol[2].mval - m[1].mcol[2].mval * m[2].mcol[1].mval) - m[1].mcol[0].mval * (m[0].mcol[1].mval * m[2].mcol[2].mval- m[0].mcol[2].mval * m[2].mcol[1].mval) + m[2].mcol[0].mval * (m[0].mcol[1].mval * m[1].mcol[2].mval - m[1].mcol[1].mval * m[0].mcol[2].mval);
