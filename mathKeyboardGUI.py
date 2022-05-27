@@ -6,6 +6,17 @@
 #
 # WARNING! All changes made in this file will be lost!
 
+"""
+
+
+    mathKeyboard.py
+    This program, contains 27 widely used math symbols and lets you to copy and use them easily.
+    Ege Guler - Galatasaray University
+    05/27/2022
+
+
+"""
+
 from PyQt5 import QtCore, QtGui, QtWidgets
 import time
 
