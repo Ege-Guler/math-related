@@ -45,7 +45,7 @@ int main(void)
     int systemDeterminant = determinant(matrix);
     printf("\nDeterminant of this system is: %d\n", systemDeterminant);
     printf("\n----------------Calculating----------------");
-    if(determinant == 0)
+    if(systemDeterminant == 0)
     {
         printf("\nThis program is unable to solve systems with infinite or no solution\n");
         exit(EXIT_FAILURE);
